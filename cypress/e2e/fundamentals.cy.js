@@ -1,6 +1,8 @@
 describe("Fundamentals test", () => {
-  it("Contains correct header text", () => {
+  beforeEach(() => {
     cy.visit("/fundamentals");
+  });
+  it("Contains correct header text", () => {
     // cy.get('[data-test="fundamentals-header"]').contains(
     //   /Testing Fundamentals/i
     // );
@@ -11,7 +13,6 @@ describe("Fundamentals test", () => {
   });
 
   it("Contains correct header text", () => {
-    cy.visit("/fundamentals");
     cy.contains(/Your tests will exist in a describe block/i).should(
       "not.be.visible"
     );
