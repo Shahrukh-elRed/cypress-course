@@ -2,6 +2,7 @@ describe("various examples", () => {
   beforeEach(() => {
     cy.visit("/");
   });
+
   it("multi-page testing", () => {
     cy.getDataTest("nav-why-cypress").click();
     cy.location("pathname").should("equal", "/");
@@ -14,5 +15,15 @@ describe("various examples", () => {
 
     cy.getDataTest("nav-examples").click();
     cy.location("pathname").should("equal", "/examples");
+  });
+
+  it.only("intercepts", () => {
+    cy.visit("/examples");
+    cy.intercept("POST", "http://localhost:3000/examples", {
+      body: {
+        message: "successfully intercepted request",
+      },
+    });
+    cy.getDataTest("post-button").click();
   });
 });
